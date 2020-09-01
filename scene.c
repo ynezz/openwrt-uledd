@@ -96,6 +96,9 @@ stop_scene_leds(struct scene *s)
 {
 	struct scene_led *item;
 
+	if (!is_running(s))
+		return;
+
 	avl_for_each_element(&s->leds, item, avl) {
 		led_stop(led_from_path(item->led->path));
 	}
